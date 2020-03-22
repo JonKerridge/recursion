@@ -1,8 +1,4 @@
-package prototypeQS5C
-import java.util.List;
-import groovy.transform.CompileStatic
-import prototypeMS.msData
-
+package quickSort
 //@CompileStatic
 class QSRecursiveWorker extends GPP_Library.DataClass {
 	

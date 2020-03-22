@@ -1,11 +1,16 @@
-package FFTPrototype
-
-import groovy.transform.CompileStatic
+package fastFourierTransform
+/*
+* uses code and concepts from
+* https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm
+* https://algs4.cs.princeton.edu/99scientific/FFT.java.html
+* https://algs4.cs.princeton.edu/99scientific/Complex.java.html
+ */
 
 //@CompileStatic
 public class FFT {
-
+    // this is a sequential version because the combine code follows on directly
     // compute the FFT of x[], assuming its length is a power of 2
+
     public static Complex[] fft(Complex[] x) {
 		
         int n = x.length;
@@ -48,9 +53,9 @@ public class FFT {
         System.out.println(title);
         System.out.println("-------------------");
         for (int i = 0; i < x.length; i++) {
-        	System.out.println(x[i]);
+        	println(x[i]);
         }
-        System.out.println();
+        println();
     }
 		
    /***************************************************************************
@@ -98,51 +103,51 @@ public class FFT {
     *
     ***************************************************************************/
 
-//    public static void main(String[] args) { 
-//        //int n = Integer.parseInt(args[0]);
-//    	int n = 4;
+    public static void main(String[] args) {
+        //int n = Integer.parseInt(args[0]);
+    	int n = 4;
+
+        Complex[] x = new Complex[n];
+
+        // original data
+//        for (int i = 0; i < n; i++) {
+//            x[i] = new Complex(i, 0);
+//            x[i] = new Complex(-2*Math.random() + 1, 0);
+//        }
+		x[0] = new Complex(-0.03480425839330703, 0)
+		x[1] = new Complex(0.07910192950176387, 0)
+		x[2] = new Complex(0.7233322451735928, 0)
+		x[3] = new Complex(0.1659819820667019, 0)
+
+        show(x, "x");
+        long start = System.currentTimeMillis();
+        // FFT of original data
+        Complex[] y = fft(x);
+        show(y, "y = fft(x)");
+        long end = System.currentTimeMillis();
+        println "Sequential FFT - $n in  ${end - start} ms "
+    }
 //
-//        Complex[] x = new Complex[n];
+//	public static void main(String[] args) {
+//		long numRuns = 131072;
+//		long total = 0;
+//		long avg = 0;
 //
-//        // original data
-////        for (int i = 0; i < n; i++) {
-////            x[i] = new Complex(i, 0);
-////            x[i] = new Complex(-2*Math.random() + 1, 0);
-////        }
-//		x[0] = new Complex(-0.03480425839330703, 0)
-//		x[1] = new Complex(0.07910192950176387, 0)
-//		x[2] = new Complex(0.7233322451735928, 0)
-//		x[3] = new Complex(0.1659819820667019, 0)
-//		
-//        show(x, "x");
-//        long start = System.currentTimeMillis();
-//        // FFT of original data
-//        Complex[] y = fft(x);
-//        show(y, "y = fft(x)");
-//        long end = System.currentTimeMillis();
-//        System.out.println("Sequential FFT - $n\n" + (end - start));
-//    }
-	
-	public static void main(String[] args) {
-		long numRuns = 131072;
-		long total = 0;
-		long avg = 0;		
-		
-		for (int i = 0; i < numRuns; i++) {
-			Complex[] x = new Complex[1];
-			x[0] = new Complex(-2*Math.random() + 1, 0);
-			
-			long start = System.nanoTime();
-			Complex[] y = fft(x);
-			long end = System.nanoTime();
-			total += (end - start);
-		}
-		avg = total / numRuns;
-		System.out.println("total: " + (total / 1000000000) + "s")
-		System.out.println("numRuns: " + numRuns)
-		System.out.println("avg: " + avg)
-		System.out.println("microseconds: " << avg / 1000)
-	}
+//		for (int i = 0; i < numRuns; i++) {
+//			Complex[] x = new Complex[1];
+//			x[0] = new Complex(-2*Math.random() + 1, 0);
+//
+//			long start = System.nanoTime();
+//			Complex[] y = fft(x);
+//			long end = System.nanoTime();
+//			total += (end - start);
+//		}
+//		avg = total / numRuns;
+//		System.out.println("total: " + (total / 1000000000) + "s")
+//		System.out.println("numRuns: " + numRuns)
+//		System.out.println("avg: " + avg)
+//		System.out.println("microseconds: " << avg / 1000)
+//	}
 }
 
 /******************************************************************************

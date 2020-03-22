@@ -1,5 +1,6 @@
-package prototypeMS
-import java.util.List;
+package mergeSort
+
+
 import groovy.transform.CompileStatic
 
 @CompileStatic

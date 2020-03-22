@@ -1,10 +1,10 @@
-package prototypeQS5C
+package seqMS
 import java.util.List;
 
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class qsResult extends GPP_Library.DataClass {
+public class msResult extends GPP_Library.DataClass {
 
   boolean overall = true
   static String init = "initClass"
@@ -18,11 +18,11 @@ class qsResult extends GPP_Library.DataClass {
   boolean stillTesting = true
   static int count = 0
 
-  int collector (qsData obj) {
+  int collector (List<msData> list) {
 	  count++
-	  for (int i = 1; i < obj.array.size(); i++) {
+	  for (int i = 1; i < list.size(); i++) {
 		  count++
-		  if (obj.array[i] < obj.array[i - 1]) {
+		  if (list[i].index < list[i - 1].index) {
 			  overall = false
 			  break
 		  }

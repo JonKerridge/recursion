@@ -1,8 +1,9 @@
-package FFTPrototype
-import java.util.List;
+package fastFourierTransform
+
+
 import groovy.transform.CompileStatic
 
-//@CompileStatic
+@CompileStatic
 public class fftData extends GPP_Library.DataClass {
 	static int instances
 	static int instance = 1
@@ -22,7 +23,7 @@ public class fftData extends GPP_Library.DataClass {
 		
 		for (int i = 0; i < n; i++) {
 			x[i] = new Complex(i, 0);
-			x[i] = new Complex(-2*Math.random() + 1, 0);
+//			x[i] = new Complex(-2*Math.random() + 1, 0);
 		}
 		
 //		x[0] = new Complex(-0.03480425839330703, 0);

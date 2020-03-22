@@ -1,6 +1,5 @@
-package FFTPrototype
-
-import java.util.List
+package fastFourierTransform
+//based on https://algs4.cs.princeton.edu/99scientific/Complex.java.html
 
 public class Complex extends GPP_Library.DataClass {
 	

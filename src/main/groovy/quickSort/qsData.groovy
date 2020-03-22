@@ -1,5 +1,6 @@
-package prototypeQS5C
-import java.util.List;
+package quickSort
+
+
 import groovy.transform.CompileStatic
 
 @CompileStatic

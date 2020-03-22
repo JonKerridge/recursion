@@ -1,8 +1,4 @@
-package prototypeMS
-import java.util.List;
-import jcsp.lang.CSProcess
-import groovy.transform.CompileStatic
-
+package mergeSort
 
 class MSRecursiveWorker extends GPP_Library.DataClass {
      

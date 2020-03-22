@@ -78,7 +78,7 @@ class RecursionInit0 extends DataClass implements CSProcess {
 													  toParent: Child2ParentList[index1].out(),
 													  toChildren: Parent2ChildList[index2].out(),
 													  fromChildren: Child2ParentList[index2].in(),
-//													  p2c: Parent2ChildList[index1]
+													  p2c: Parent2ChildList[index1]
 													  )
 						processes[index3++] = rp
 						index2++

@@ -1,4 +1,4 @@
-package prototypeMS
+package mergeSort
 
 import GPP_Library.DataDetails
 import GPP_Library.LocalDetails
@@ -8,17 +8,17 @@ import GPP_Library.terminals.EmitSingle
 import jcsp.lang.CSProcess
 import jcsp.lang.Channel
 import jcsp.lang.Parallel
-import prototypeMS.MSRecursiveWorker as msrw
-import prototypeMS.msData as msd
-import prototypeMS.msResult as msr
+import mergeSort.MSRecursiveWorker as msrw
+import mergeSort.msData as msd
+import mergeSort.msResult as msr
 import recursion.RecursionEngine
 
-def instances, splitCount, maxDepth
+int instances, splitCount, maxDepth
 
 if (args.size() == 0) {
-  instances = 4000
+  instances = 1048576
   splitCount = 2
-  maxDepth = 10
+  maxDepth = 5
 } else {
   instances = Integer.parseInt(args[0])
   splitCount = Integer.parseInt(args[1])
@@ -28,7 +28,7 @@ if (args.size() == 0) {
 int totalProcesses = Math.pow(splitCount, maxDepth) - 1
 int leafProcesses = Math.pow(splitCount, maxDepth - 1)
 
-print "MergeSort recursive - instances: $instances, "
+print "RecursiveMS, $instances, "
 
 def startime = System.currentTimeMillis()
 
@@ -51,14 +51,6 @@ def chan2 = Channel.one2one()
 def emitter = new EmitSingle(output: chan1.out(),
     eDetails: emitterDetails)
 
-//def recursionInit = new RecursionInit2(input: chan1.in(),
-//						       		   output: chan2.out(),
-//									   lDetails: workerDetails,
-//									   splitCount: splitCount,
-//									   maxDepth: maxDepth,
-//									   workMethod1: MSRecursiveWorker.workMethod1,
-//									   workMethod2: MSRecursiveWorker.workMethod2)
-
 def recursionNetwork = new RecursionEngine(type: 1,
     input: chan1.in(),
     output: chan2.out(),
@@ -72,6 +64,5 @@ def collector = new Collect(input: chan2.in(),
     rDetails: resultDetails)
 
 new Parallel([emitter, recursionNetwork, collector] as CSProcess[]).run()
-
 def endtime = System.currentTimeMillis()
-print " ${endtime - startime}\n"
+print " ${((endtime - startime)/1000)}\n "

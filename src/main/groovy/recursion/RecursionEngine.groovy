@@ -45,15 +45,13 @@ class RecursionEngine implements CSProcess{
             workMethod2: workMethod2)
         break
       case 2: //not in place, data returned up network
-        recursionInit = new recursion.RecursionInit2(input: input,
+        recursionInit = new RecursionInit2(input: input,
             output: output,
             lDetails: lDetails,
             splitCount: splitCount,
             maxDepth: maxDepth,
             workMethod1: workMethod1,
             workMethod2: workMethod2)
-        break
-      default:
         break
     }
     recursionInit.run()

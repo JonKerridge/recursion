@@ -1,17 +1,23 @@
-package FFTPrototype
-import java.util.List;
+package fastFourierTransform
 
-import groovy.transform.CompileStatic
+import GPP_Library.DataClass
+
+// see
+// https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm
+// and refined in https://introcs.cs.princeton.edu/java/97data/FFT.java.html
 
 //@CompileStatic
-class FFTRecursiveWorker extends GPP_Library.DataClass {
-	
+class FFTRecursiveWorker extends DataClass {
+	// recursive the only difference is that the code is split
+	// into two methods fftrun([ List dataset, List [id] ]) and
+	// combine([id, n, [even, odd] ])
+
 	static String workMethod1 = "fftRun"
 	static String workMethod2 = "combine"
 	
 	List fftRun(List params){ //dataSet list, param list (id)
 		
-		int n = params[0][0].x.length
+		int n = ((fftData)((List)params[0])[0]).x.length
 		
 		//test basecase
 		if (n != 1) {
@@ -23,13 +29,13 @@ class FFTRecursiveWorker extends GPP_Library.DataClass {
 			//fft of even terms
 			Complex[] even = new Complex[n/2]
 			for (int k = 0; k < n/2; k++) {
-				even[k] = params[0][0].x[2*k]
+				even[k] = ((fftData)((List)params[0])[0]).x[2*k]
 			}
 			
 			//fft of odd terms
 			Complex[] odd = new Complex[n/2] //reuse array
 			for (int k = 0; k < n/2; k++) {
-				odd[k] = params[0][0].x[2*k + 1]
+				odd[k] = ((fftData)((List)params[0])[0]).x[2*k + 1]
 			}
 			
 			def evenData = new fftData()

@@ -14,7 +14,7 @@ class RecursiveProcess0 extends DataClass implements CSProcess {
 	ChannelInput fromParent
 	ChannelOutput toChildren
 	ChannelInput fromChildren
-//	List<Any2AnyChannel> p2c
+	Any2AnyChannel p2c
 	
 	String workMethod1
 	def parameters = []

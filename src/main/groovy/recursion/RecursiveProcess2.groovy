@@ -14,7 +14,7 @@ class RecursiveProcess2 extends DataClass implements CSProcess {
 	ChannelInput fromParent
 	ChannelOutput toChildren
 	ChannelInput fromChildren
-	def p2c
+	Any2AnyChannel p2c
 	
 	String workMethod1
 	String workMethod2
@@ -34,8 +34,7 @@ class RecursiveProcess2 extends DataClass implements CSProcess {
 	boolean maxDepthReached = false	
 	boolean used = false
 		
-	void run() {		
-		
+	void run() {
 		if (depth > 0)
 			parameters = fromParent.read()
 		

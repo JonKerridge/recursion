@@ -1,10 +1,10 @@
-package prototypeMS
-import java.util.List;
+package quickSort
+
 
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class msResult extends GPP_Library.DataClass {
+class qsResult extends GPP_Library.DataClass {
 
   boolean overall = true
   static String init = "initClass"
@@ -18,7 +18,7 @@ class msResult extends GPP_Library.DataClass {
   boolean stillTesting = true
   static int count = 0
 
-  int collector (msData obj) {
+  int collector (qsData obj) {
 	  count++
 	  for (int i = 1; i < obj.array.size(); i++) {
 		  count++
@@ -31,7 +31,7 @@ class msResult extends GPP_Library.DataClass {
   }
 
   int finalise (List d){
-    print "$overall, $count,"
+    print " $overall, $count, "
     return completedOK
   }
 

@@ -1,5 +1,5 @@
-package FFTPrototype
-import java.util.List;
+package fastFourierTransform
+
 
 import groovy.transform.CompileStatic
 
@@ -19,7 +19,7 @@ class fftResult extends GPP_Library.DataClass {
   static int count = 0
 
   int collector (fftData data) {
-	  show(data, "y = fft(x)")
+//	  show(data, "y = fft(x)")
     return completedOK
   }
 
